@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bodega Velasquez - Sobre Nosotros</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/responsive.css">
+</head>
+<body>
+  <header id="main-header" class="header"></header>
+
+  <main class="container-nosotros">
+    <!-- Hero / Presentación -->
+    <section class="hero-nosotros">
+      <div class="hero-content">
+        <h1>Sobre Bodega Velasquez</h1>
+        <p>
+          Bodega Velasquez nace con la misión de brindar un servicio de abastecimiento rápido, cercano y accesible para las familias peruanas. Nos especializamos en la comercialización de productos de la canasta básica familiar, garantizando precios competitivos y una atención cálida y personalizada.
+        </p>
+        <p>
+          Combinamos la tradición de la tienda de barrio de toda la vida con la tecnología moderna, ofreciendo la comodidad de hacer tus compras online y recibirlas directo en tu hogar con la frescura que mereces.
+        </p>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" alt="Bodega Velasquez Tienda" />
+      </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="grid-mision-vision">
+      <div class="card-mv">
+        <div class="mv-icon">🎯</div>
+        <h2>Misión</h2>
+        <p>Facilitar el acceso a alimentos y productos del hogar de manera eficiente mediante soluciones tecnológicas modernas, garantizando calidad, rapidez y precios justos.</p>
+      </div>
+      <div class="card-mv">
+        <div class="mv-icon">👁️</div>
+        <h2>Visión</h2>
+        <p>Ser la tienda de barrio digital de referencia en la ciudad, conectando la calidez de la atención tradicional con la agilidad de la web y el servicio delivery.</p>
+      </div>
+    </section>
+
+    <!-- Nuestros Valores -->
+    <section class="section-valores">
+      <h2>¿Por qué elegir Bodega Velasquez?</h2>
+      <div class="grid-valores">
+        <div class="card-valor">
+          <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=500&q=80" alt="Productos Frescos" />
+          <div class="card-valor-body">
+            <h3>Productos Seleccionados</h3>
+            <p>Elegimos minuciosamente cada abarrote, fruta y verdura para garantizar que a tu mesa solo lleguen productos de primera calidad.</p>
+          </div>
+        </div>
+
+        <div class="card-valor">
+          <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=500&q=80" alt="Atención Rápida" />
+          <div class="card-valor-body">
+            <h3>Atención y Rapidez</h3>
+            <p>Procesamos y despachamos tus pedidos de manera ágil para que no te falte nada en la cocina durante tu día a día.</p>
+          </div>
+        </div>
+
+        <div class="card-valor">
+          <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=500&q=80" alt="Precios Justos" />
+          <div class="card-valor-body">
+            <h3>Precios Transparentes</h3>
+            <p>Mantenemos precios competitivos y ofertas especiales en la canasta básica pensando siempre en la economía familiar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="main-footer" class="footer"></footer>
+
+  <script type="module" src="./src/js/utils.js"></script>
+  <script type="module">
+    import { renderHeaderFooter } from './src/js/utils.js';
+    renderHeaderFooter();
+  </script>
+</body>
+</html>

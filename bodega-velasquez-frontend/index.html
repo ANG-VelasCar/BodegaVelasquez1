@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bodega Velasquez - Inicio</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/responsive.css">
+</head>
+<body>
+  <header id="main-header" class="header"></header>
+
+  <main class="container-inicio">
+    <!-- Hero Principal -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1>Bienvenidos a Bodega Velasquez</h1>
+        <p class="hero-subtitle">
+          Tus abarrotes y productos preferidos al mejor precio y sin salir de casa. Abastecemos tu hogar con la calidad, rapidez y confianza de siempre.
+        </p>
+        <div class="hero-buttons">
+          <a href="productos.html" class="btn btn-primary" style="padding:0.8rem 2rem;">Explorar Productos</a>
+          <a href="promociones.html" class="btn-secondary">Ver Ofertas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Beneficios -->
+    <section class="features-bar">
+      <div class="feature-item">
+        <span class="feature-icon">🚚</span>
+        <div>
+          <h4>Envíos Rápidos</h4>
+          <p>Entregas locales directas a tu puerta.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🏷️</span>
+        <div>
+          <h4>Precios de Barrio</h4>
+          <p>Ofertas reales en tu canasta básica.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🛡️</span>
+        <div>
+          <h4>Calidad Garantizada</h4>
+          <p>Productos frescos y marcas seleccionadas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promociones Activas -->
+    <section class="section-promos">
+      <div class="section-title">
+        <h2>Promociones Activas 🏷️</h2>
+        <a href="promociones.html" class="link-ver-mas">Ver todas las ofertas &rarr;</a>
+      </div>
+      <div id="home-promotions" style="margin-bottom:2rem;"></div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="section-destacados">
+      <div class="section-title">
+        <h2>Productos Destacados ⭐</h2>
+      </div>
+      <div id="featured-products" class="products-grid"></div>
+    </section>
+  </main>
+
+  <footer id="main-footer" class="footer"></footer>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>

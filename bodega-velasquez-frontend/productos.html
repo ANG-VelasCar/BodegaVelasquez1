@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bodega Velasquez - Catálogo</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/responsive.css">
+</head>
+<body>
+  <header id="main-header" class="header"></header>
+
+  <main>
+    <h1>Catálogo General de Productos</h1>
+    
+    <!-- Filtros y Búsqueda -->
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; margin:1.5rem 0; background:white; padding:1rem; border-radius:8px; box-shadow:var(--shadow);">
+      <input type="text" id="search-input" placeholder="Buscar por nombre o marca..." style="flex:2; padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px; min-width:200px;"/>
+      
+      <select id="category-select" style="flex:1; padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px;">
+        <option value="">Todas las Categorías</option>
+      </select>
+
+      <select id="sort-select" style="flex:1; padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px;">
+        <option value="">Ordenar por</option>
+        <option value="price-asc">Precio: Menor a Mayor</option>
+        <option value="price-desc">Precio: Mayor a Menor</option>
+        <option value="name-asc">Nombre: A-Z</option>
+      </select>
+    </div>
+
+    <div id="catalog-grid" class="products-grid"></div>
+  </main>
+
+  <footer id="main-footer" class="footer"></footer>
+
+  <script type="module" src="./src/js/productos.js"></script>
+</body>
+</html>

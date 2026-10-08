@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bodega Velasquez - Carrito de Compras</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/responsive.css">
+</head>
+<body>
+  <header id="main-header" class="header"></header>
+
+  <main>
+    <h1>Tu Carrito de Compras</h1>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; margin-top:1.5rem;">
+      <div>
+        <div id="cart-items"></div>
+      </div>
+
+      <div style="background:var(--white); padding:1.5rem; border-radius:8px; box-shadow:var(--shadow); height:fit-content;">
+        <h3>Resumen del Pedido</h3>
+        <hr style="margin:1rem 0; border:0; border-top:1px solid var(--gray-light);"/>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span>Subtotal:</span>
+          <strong id="cart-subtotal">S/ 0.00</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:1.5rem; font-size:1.2rem; color:var(--primary);">
+          <span>Total:</span>
+          <strong id="cart-total">S/ 0.00</strong>
+        </div>
+
+        <h4>Datos del Cliente</h4>
+        <form id="checkout-form" style="display:flex; flex-direction:column; gap:0.8rem; margin-top:1rem;">
+          <input type="text" id="client-name" placeholder="Nombre completo" required style="padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px;"/>
+          <input type="email" id="client-email" placeholder="Correo electrónico" required style="padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px;"/>
+          <input type="tel" id="client-phone" placeholder="Teléfono/Celular" required style="padding:0.6rem; border:1px solid var(--gray-light); border-radius:4px;"/>
+          <button type="submit" class="btn btn-primary" style="margin-top:0.5rem;">Finalizar Compra 🚀</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer id="main-footer" class="footer"></footer>
+
+  <script type="module" src="./src/js/carrito.js"></script>
+</body>
+</html>
