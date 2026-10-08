@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
+  preview: {
+    allowedHosts: true, // Permite que Render acceda a la previsualización sin bloquear la URL
+  },
   build: {
     rollupOptions: {
       input: {
