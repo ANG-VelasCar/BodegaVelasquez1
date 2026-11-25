@@ -1,8 +1,20 @@
 const express = require('express');
-const router = express.Router();
-const { getProducts, getProductById } = require('../controllers/products.controller');
+const asyncHandler = require('../utils/async-handler');
+const requireAdmin = require('../middleware/require-admin');
+const {
+  getProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct
+} = require('../controllers/products.controller');
 
-router.get('/', getProducts);
-router.get('/:id', getProductById);
+const router = express.Router();
+
+router.get('/', asyncHandler(getProducts));
+router.get('/:id', asyncHandler(getProductById));
+router.post('/', requireAdmin, asyncHandler(createProduct));
+router.put('/:id', requireAdmin, asyncHandler(updateProduct));
+router.delete('/:id', requireAdmin, asyncHandler(deleteProduct));
 
 module.exports = router;

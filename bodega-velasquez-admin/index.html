@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de productos - Bodega Velasquez</title>
+  <link rel="stylesheet" href="./src/css/admin-productos.css">
+</head>
+<body>
+  <header class="admin-header">
+    <a class="admin-brand" href="./" aria-label="Gestión de productos Bodega Velasquez">
+      <span class="admin-brand-icon" aria-hidden="true">🛒</span>
+      <span>BODEGA <strong>VELASQUEZ</strong></span>
+    </a>
+    <div class="admin-session" hidden>
+      <span id="admin-email"></span>
+      <button id="sign-out-button" class="btn btn-secondary" type="button">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main id="login-panel" class="login-page">
+    <form id="login-form" class="login-card">
+      <p class="admin-eyebrow">ACCESO RESTRINGIDO</p>
+      <h1>Iniciar sesión</h1>
+      <p class="admin-description">Ingresa con la cuenta autorizada para administrar Bodega Velasquez.</p>
+      <label class="form-field">
+        <span>Correo electrónico</span>
+        <input id="login-email" type="email" autocomplete="username" required>
+      </label>
+      <label class="form-field">
+        <span>Contraseña</span>
+        <input id="login-password" type="password" autocomplete="current-password" required>
+      </label>
+      <p id="login-error" class="form-error" role="alert"></p>
+      <button id="login-button" class="btn btn-primary" type="submit">Ingresar al panel</button>
+    </form>
+  </main>
+
+  <main id="admin-app" class="admin-page" hidden>
+    <section class="admin-heading">
+      <div>
+        <p class="admin-eyebrow">INVENTARIO</p>
+        <h1>Administrar productos</h1>
+        <p class="admin-description">Crea, consulta, actualiza o elimina productos conectados a la API.</p>
+      </div>
+      <button id="new-product-button" class="btn btn-primary" type="button">＋ Nuevo producto</button>
+    </section>
+
+    <div id="status-message" class="admin-message" role="status" aria-live="polite"></div>
+
+    <section class="admin-summary" aria-label="Resumen del inventario">
+      <div class="summary-card">
+        <span class="summary-icon">📦</span>
+        <div><span class="summary-label">Productos</span><strong id="product-count">—</strong></div>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">🏷️</span>
+        <div><span class="summary-label">Categorías</span><strong id="category-count">—</strong></div>
+      </div>
+      <div class="summary-card">
+        <span class="summary-icon">⚠️</span>
+        <div><span class="summary-label">Stock bajo (≤ 5)</span><strong id="low-stock-count">—</strong></div>
+      </div>
+    </section>
+
+    <nav class="resource-nav" aria-label="Administrar recursos">
+      <button class="resource-tab is-active" data-resource="products" type="button">Productos</button>
+      <button class="resource-tab" data-resource="categories" type="button">Categorías</button>
+      <button class="resource-tab" data-resource="customers" type="button">Clientes</button>
+      <button class="resource-tab" data-resource="orders" type="button">Pedidos</button>
+      <button class="resource-tab" data-resource="promotions" type="button">Promociones</button>
+    </nav>
+
+    <section id="product-resource" class="admin-panel resource-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Inventario de productos</h2>
+          <p>Busca y administra los productos de tu bodega.</p>
+        </div>
+        <label class="search-field">
+          <span aria-hidden="true">⌕</span>
+          <input id="product-search" type="search" placeholder="Buscar por producto o marca..." aria-label="Buscar productos">
+        </label>
+      </div>
+
+      <div class="table-scroll">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Estado</th>
+              <th><span class="visually-hidden">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody id="product-table-body">
+            <tr><td class="table-placeholder" colspan="6">Cargando productos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="generic-resource" class="admin-panel resource-panel" hidden>
+      <div class="panel-heading">
+        <div>
+          <h2 id="resource-title"></h2>
+          <p id="resource-description"></p>
+        </div>
+        <div class="resource-tools">
+          <label class="search-field">
+            <span aria-hidden="true">⌕</span>
+            <input id="resource-search" type="search" placeholder="Buscar..." aria-label="Buscar registros">
+          </label>
+          <button id="new-resource-button" class="btn btn-primary" type="button">＋ Nuevo</button>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="product-table">
+          <thead id="resource-table-head"></thead>
+          <tbody id="resource-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="product-dialog" class="product-dialog">
+    <form id="product-form" novalidate>
+      <div class="dialog-heading">
+        <div>
+          <p class="admin-eyebrow">GESTIÓN DE INVENTARIO</p>
+          <h2 id="dialog-title">Nuevo producto</h2>
+        </div>
+        <button id="close-dialog-button" class="dialog-close" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <input id="product-id" type="hidden">
+
+      <div class="form-grid">
+        <label class="form-field form-field-wide">
+          <span>Nombre del producto *</span>
+          <input id="product-name" name="name" type="text" maxlength="120" required>
+        </label>
+        <label class="form-field form-field-wide">
+          <span>Descripción *</span>
+          <textarea id="product-description" name="description" rows="3" maxlength="500" required></textarea>
+        </label>
+        <label class="form-field">
+          <span>Precio (S/) *</span>
+          <input id="product-price" name="price" type="number" min="0" step="0.01" required>
+        </label>
+        <label class="form-field">
+          <span>Stock *</span>
+          <input id="product-stock" name="stock" type="number" min="0" step="1" required>
+        </label>
+        <label class="form-field">
+          <span>Categoría *</span>
+          <select id="product-category" name="categoryId" required>
+            <option value="">Selecciona una categoría</option>
+          </select>
+        </label>
+        <label class="form-field">
+          <span>Marca *</span>
+          <input id="product-brand" name="brand" type="text" maxlength="80" required>
+        </label>
+        <label class="form-field form-field-wide">
+          <span>URL de imagen</span>
+          <input id="product-image" name="image" type="url" placeholder="https://ejemplo.com/imagen.jpg">
+        </label>
+        <label class="featured-field form-field-wide">
+          <input id="product-featured" name="featured" type="checkbox">
+          <span>Mostrar como producto destacado</span>
+        </label>
+      </div>
+
+      <p id="form-error" class="form-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="cancel-dialog-button" class="btn btn-secondary" type="button">Cancelar</button>
+        <button id="save-product-button" class="btn btn-primary" type="submit">Guardar producto</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="resource-dialog" class="product-dialog">
+    <form id="resource-form" novalidate>
+      <div class="dialog-heading">
+        <div>
+          <p class="admin-eyebrow">GESTIÓN DE DATOS</p>
+          <h2 id="resource-dialog-title">Nuevo registro</h2>
+        </div>
+        <button id="close-resource-dialog" class="dialog-close" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <div id="resource-fields" class="form-grid"></div>
+      <p id="resource-form-error" class="form-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="cancel-resource-dialog" class="btn btn-secondary" type="button">Cancelar</button>
+        <button id="save-resource-button" class="btn btn-primary" type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="admin-footer">Panel independiente de gestión · Bodega Velasquez</footer>
+  <script type="module" src="./src/js/admin-productos.js"></script>
+</body>
+</html>

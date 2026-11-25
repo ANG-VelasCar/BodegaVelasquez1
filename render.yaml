@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: bodega-velasquez-api
+    runtime: node
+    rootDir: bodega-velasquez-api
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: FIREBASE_PROJECT_ID
+        value: bodega-aab6f
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: ADMIN_EMAILS
+        value: angel.vc.0205@gmail.com
+      - key: ALLOWED_ORIGINS
+        sync: false
