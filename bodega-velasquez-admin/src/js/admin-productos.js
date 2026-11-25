@@ -82,9 +82,17 @@ const resourceSettings = {
 
 document.addEventListener('DOMContentLoaded', async () => {
   bindEvents();
+  registerServiceWorker();
   setAccessTokenProvider(async () => auth.currentUser ? auth.currentUser.getIdToken() : null);
   onAuthStateChanged(auth, handleAuthState);
 });
+
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
+      .catch((error) => console.error('No se pudo registrar la aplicación instalable:', error));
+  }
+}
 
 function bindEvents() {
   document.getElementById('login-form').addEventListener('submit', handleLogin);

@@ -14,3 +14,9 @@ The Firebase Web App config is public client configuration. Never put a Firebase
 ## Production
 
 Build with `npm run build` and deploy `dist` as a separate static site. Configure the `VITE_API_URL` and `VITE_FIREBASE_*` values for the deployed site before building. Add the exact site origin to the API's Render `ALLOWED_ORIGINS`.
+
+## Install as an app
+
+The admin panel is an installable Progressive Web App (PWA). Serve it over HTTPS and open its URL in Chrome or Edge. Use the install icon in the address bar (or the browser menu → **Install app**) and confirm the browser prompt. Browsers require this user confirmation; a website cannot silently install itself. On iPhone or iPad, open the panel in Safari, tap **Share**, then choose **Add to Home Screen**.
+
+The service worker caches the application shell and static assets only. It does not cache Firebase, API responses, customer data, or orders; data management still requires an internet connection.
